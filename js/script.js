@@ -129,3 +129,24 @@ burger.addEventListener('click', () => {
 catalog.addEventListener('click', () => {
     catalogMenu.classList.toggle('catalog__menu_active');
 })
+
+const menus = document.querySelectorAll('.catalog__item-js');
+const tabs = document.querySelectorAll('.catalog__tab');
+const openTab = (e, menu) => {
+    tabs.forEach(tab => {
+        tab.classList.remove('catalog__tab_active');
+        if(tab.dataset.id === e.currentTarget.id) {
+            tab.classList.add('catalog__tab_active');
+        }
+    })
+    menus.forEach(menu => {
+        menu.classList.remove('catalog__item_active');
+        if(menu.id === e.currentTarget.id) {
+            menu.classList.add('catalog__item_active');
+        }
+    })
+}
+
+menus.forEach(menu => {
+    menu.addEventListener('click', (e) => openTab(e, menu));
+})
